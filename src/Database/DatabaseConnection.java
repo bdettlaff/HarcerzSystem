@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.ResultSet;
 public class DatabaseConnection {
 
     public static final String DRIVER = "org.sqlite.JDBC";
@@ -11,6 +12,9 @@ public class DatabaseConnection {
 
     private Connection conn;
     private Statement stat;
+    private String createLogowanie = "CREATE TABLE IF NOT EXISTS logowanie (idLogowanie INTEGER PRIMARY KEY AUTOINCREMENT, login varchar(255), haslo varchar(255))";
+    private String login;
+    private String password;
 
     public DatabaseConnection() {
         try {
@@ -28,16 +32,33 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
 
-        createTables();
+        doStatemant(createLogowanie);
     }
 
-    public boolean createTables()  {
-        String createLogowanie = "CREATE TABLE IF NOT EXISTS logowanie (idLogowanie INTEGER PRIMARY KEY AUTOINCREMENT, login varchar(255), haslo varchar(255))";
-
+    public boolean doStatemant(String command){
         try {
-            stat.execute(createLogowanie);
+            stat.execute(command);
         } catch (SQLException e) {
-            System.err.println("Blad przy tworzeniu tabeli");
+            System.err.println("Blad przy wykonaniu polecenia.");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean selectDataFromDB(String command){
+        try {
+            ResultSet rs = stat.executeQuery(command);
+
+            while(rs.next()){
+                login = rs.getString("login");
+                password = rs.getString("haslo");
+
+                System.out.println("Login: " + login);
+                System.out.println("Hasło: " + password);
+            }
+        } catch (SQLException e) {
+            System.err.println("Blad przy pobieraniu danych z BD");
             e.printStackTrace();
             return false;
         }

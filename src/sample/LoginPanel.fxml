@@ -10,7 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="bgLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1000.0" style="-fx-background-image: url('file:H:///Test/background.jpg');" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="bgLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1000.0" style="-fx-background-image: url('file:H:///Test/background.jpg');" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
    <children>
       <ImageView fitHeight="361.0" fitWidth="495.0" layoutX="518.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: url('file:H:///Test/logo_complete.png');" />
       <TextField fx:id="tfLogin" layoutX="264.0" layoutY="375.0" prefHeight="25.0" prefWidth="169.0" />
@@ -41,6 +41,6 @@
       </Label>
       <Label layoutX="922.0" layoutY="819.0" text="Wersja 0.0.1" />
       <Label fx:id="lblStatus" layoutX="330.0" layoutY="336.0" text="STATUS" />
-      <Button fx:id="btnLogIn" layoutX="323.0" layoutY="457.0" mnemonicParsing="false" text="Zaloguj" />
+      <Button fx:id="btnLogIn" layoutX="323.0" layoutY="457.0" mnemonicParsing="false" onAction="#Login" text="Zaloguj" />
    </children>
 </AnchorPane>
