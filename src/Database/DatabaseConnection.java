@@ -12,7 +12,6 @@ public class DatabaseConnection {
 
     private Connection conn;
     private Statement stat;
-    private String createLogowanie = "CREATE TABLE IF NOT EXISTS logowanie (idLogowanie INTEGER PRIMARY KEY AUTOINCREMENT, login varchar(255), haslo varchar(255))";
     private String login;
     private String password;
 
@@ -32,10 +31,9 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
 
-        doStatemant(createLogowanie);
     }
 
-    public boolean doStatemant(String command){
+    public boolean doStatement(String command){
         try {
             stat.execute(command);
         } catch (SQLException e) {
@@ -53,9 +51,6 @@ public class DatabaseConnection {
             while(rs.next()){
                 login = rs.getString("login");
                 password = rs.getString("haslo");
-
-                System.out.println("Login: " + login);
-                System.out.println("Hasło: " + password);
             }
         } catch (SQLException e) {
             System.err.println("Blad przy pobieraniu danych z BD");
@@ -64,4 +59,17 @@ public class DatabaseConnection {
         }
         return true;
     }
+
+    public String getLogin(){
+        return this.login;
+    }
+
+    public String getPassword(){
+        return this.password;
+    }
+
+    public void closeConnection() throws SQLException {
+        conn.close();
+    }
+
 }
