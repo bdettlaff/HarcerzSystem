@@ -84,4 +84,9 @@
          </font>
       </Label>
     </children>
+    <Button layoutX="423.0" layoutY="732.0" mnemonicParsing="false" onMouseClicked="#cofnij" text="WSTECZ">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Button>
 </AnchorPane>

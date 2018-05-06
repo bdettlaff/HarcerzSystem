@@ -1,15 +1,23 @@
 package Insert;
 
 import Database.DatabaseConnection;
+import Login.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 public class InsertController {
+
+
     @FXML
     private TextField tfImie;
     @FXML
@@ -35,6 +43,7 @@ public class InsertController {
     private String NrDomu;
     private String Ulica;
     */
+
     public void dodajHarcerza(MouseEvent event) throws SQLException {
 
         DatabaseConnection polaczenie = new DatabaseConnection();
@@ -51,23 +60,20 @@ public class InsertController {
 
             polaczenie.doStatement("INSERT INTO harcerze (Imie, Nazwisko, PESEL, Ulica, NumerDomu, Miejscowosc, NumerTelefonu) " +
                     "VALUES ("+"'"+tfImie.getText()+"'"+", "+"'"+tfNazwisko.getText()+"'"+", "+"'"+tfPESEL.getText()+"'"+", "+"'"+tfUlica.getText()+"'"+", "+"'"+tfNrDomu.getText()+"'"+", "+"'"+tfMiejscowosc.getText()+"'"+", "+"'"+tfNrTelefonu.getText()+"'"+");");
+            lblStatus.setText("Poprawnie dodano Harcerza");
         }
-/*
-        INSERT INTO harcerze (Imie, Nazwisko, PESEL, Ulica, NumerDomu, Miejscowosc, NumerTelefonu)
-        VALUES (value1, value2, value3, ...);
 
-        */
         polaczenie.closeConnection();
     }
 
     public void wyczysc(){
-        tfImie.setText(" ");
-        tfNazwisko.setText(" ");
-        tfPESEL.setText(" ");
-        tfUlica.setText(" ");
-        tfNrDomu.setText(" ");
-        tfMiejscowosc.setText(" ");
-        tfNrTelefonu.setText(" ");
+        tfImie.setText("");
+        tfNazwisko.setText("");
+        tfPESEL.setText("");
+        tfUlica.setText("");
+        tfNrDomu.setText("");
+        tfMiejscowosc.setText("");
+        tfNrTelefonu.setText("");
     }
 
     public boolean sprawdzPESEL(String pesel){
@@ -116,4 +122,15 @@ public class InsertController {
         }
 
     }
+
+    public void cofnij(MouseEvent event) throws IOException {
+        Parent window1;
+        window1 = FXMLLoader.load(getClass().getResource("/Menu/Menu.fxml"));
+        Scene newSceneWindow1 = new Scene(window1);
+        Stage mainStage;
+        mainStage = Main.getPrimaryStage();
+        mainStage.setScene(newSceneWindow1);
+        mainStage.show();
+    }
+
 }

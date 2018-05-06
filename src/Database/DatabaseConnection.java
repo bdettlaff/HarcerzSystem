@@ -14,7 +14,71 @@ public class DatabaseConnection {
     private Statement stat;
     private String login;
     private String password;
+/*
+    private String colImie;
+    private String colNazwisko;
+    private String colPESEL;
+    private String colUlica;
+    private String colNumerDomu;
+    private String colMiejscowosc;
+    private String colNumerTelefonu;
 
+    public String getColImie() {
+        return colImie;
+    }
+
+    public String getColNazwisko() {
+        return colNazwisko;
+    }
+
+    public String getColPESEL() {
+        return colPESEL;
+    }
+
+    public String getColUlica() {
+        return colUlica;
+    }
+
+    public String getColNumerDomu() {
+        return colNumerDomu;
+    }
+
+    public String getColMiejscowosc() {
+        return colMiejscowosc;
+    }
+
+    public String getColNumerTelefonu() {
+        return colNumerTelefonu;
+    }
+
+    public void setColImie(String colImie) {
+        this.colImie = colImie;
+    }
+
+    public void setColMiejscowosc(String colMiejscowosc) {
+        this.colMiejscowosc = colMiejscowosc;
+    }
+
+    public void setColNazwisko(String colNazwisko) {
+        this.colNazwisko = colNazwisko;
+    }
+
+    public void setColNumerDomu(String colNumerDomu) {
+        this.colNumerDomu = colNumerDomu;
+    }
+
+    public void setColNumerTelefonu(String colNumerTelefonu) {
+        this.colNumerTelefonu = colNumerTelefonu;
+    }
+
+    public void setColPESEL(String colPESEL) {
+        this.colPESEL = colPESEL;
+    }
+
+    public void setColUlica(String colUlica) {
+        this.colUlica = colUlica;
+    }
+*/
     public DatabaseConnection() {
         try {
             Class.forName(DatabaseConnection.DRIVER);
@@ -59,7 +123,26 @@ public class DatabaseConnection {
         }
         return true;
     }
+/*
+    public boolean selectMenu(String command){
+        try {
+            ResultSet rs = stat.executeQuery(command);
 
+            while(rs.next()){
+                colImie=rs.getString("Imie");
+                colNazwisko=rs.getString("Nazwisko");
+                colPESEL=rs.getString("PESEL");
+                colUlica=rs.getString("Ulica");
+               // col.
+            }
+        } catch (SQLException e) {
+            System.err.println("Blad przy pobieraniu danych z BD");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+*/
     public String getLogin(){
         return this.login;
     }
